@@ -6,6 +6,37 @@ const jwt = require('jsonwebtoken');
 
 const User = require("../models/user");
 
+router.get('/', (req, res, next) => {
+    User.find().select('_id user password').exec().then(users => {
+        const response = {
+            count: users.length,
+            users: users.map(user => {
+                return {
+                    _id: user._id,
+                    user: user.user,
+                    password: user.password,
+                    request: {
+                        type: 'GET',
+                        url: 'http://localhost:3000/users/' + user._id
+                    }
+                }
+            })
+        }
+        // if(docs.length >= 0){
+        res.status(200).json(response);
+        // }else{
+        //     res.status(404).json({
+        //         message: "Não existe produtos cadastrados"
+        //     })
+        // }       
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+});
+
 router.post("/signup", (req, res, next) => {
     User.find({user: req.body.user}).exec().then(user => {
         if(user.length >= 1) {
