@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const productRoutes = require('./api/routes/products');
+const portaRoutes = require('./api/routes/porta');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users')
 const dadosPorta = require('./api/mqtt-dadosPorta');
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/products', productRoutes);
+app.use('/portas', portaRoutes);
 app.use('/orders', orderRoutes);
 app.use('/users', userRoutes);
 app.use('/mqtt-dadosPorta', dadosPorta);
