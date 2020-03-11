@@ -21,7 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.12",
     "morgan": "^1.9.1",
-    "mqtt": "^3.0.0"
+    "mqtt": "^3.0.0",
+    "sse-nodejs": "^0.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
