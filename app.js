@@ -9,7 +9,7 @@ const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users')
 const dadosPorta = require('./api/mqtt-dadosPorta');
 
-mongoose.connect('mongodb+srv://ruansantos99:'+ process.env.MONGO_ATLAS_PW +'@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://ruansantos99:'+ process.env.MONGO_ATLAS_PW +'@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,
 });
 
