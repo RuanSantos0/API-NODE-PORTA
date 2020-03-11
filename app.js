@@ -9,11 +9,20 @@ const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users')
 const dadosPorta = require('./api/mqtt-dadosPorta');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://ruansantos99:'+ process.env.MONGO_ATLAS_PW +'@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority', {
+const dbRoute = 'mongodb+srv://ruansantos99:'+ process.env.MONGO_ATLAS_PW +'@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority';
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(dbRoute, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,
 });
 
-mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+
+db.once('open', () => console.log('connected to the database'));
+
+// checks if connection with the database is successful
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
