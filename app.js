@@ -9,13 +9,13 @@ const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users')
 const dadosPorta = require('./api/mqtt-dadosPorta');
 
-const dbRoute = 'mongodb+srv://ruansantos99:'+ process.env.MONGO_ATLAS_PW +'@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority';
+const dbRoute = 'mongodb+srv://ruansantos99:ruan160399@api-porta-4p5qa.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.Promise = global.Promise;
 
 mongoose.connect(dbRoute, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,
-});
+}); 
 
 let db = mongoose.connection;
 
