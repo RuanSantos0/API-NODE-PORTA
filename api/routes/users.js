@@ -74,6 +74,8 @@ router.post("/signup", (req, res, next) => {
 
 
 router.post("/login", (req, res, nex) => {
+    console.log('req', req.body);
+    
     User.find({user: req.body.user}).exec().then(user => {
         if(user.length < 1) {
             return res.status(404).json({
